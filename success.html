@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent - Monty</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #060a0a;
+            --text-primary: #e8f4f0;
+            --text-secondary: rgba(232, 244, 240, 0.72);
+            --accent: #44DFBF;
+            --accent-deep: #2BA88E;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 2rem; text-align: center;
+        }
+        .success-container { max-width: 500px; }
+        .success-icon {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 2rem;
+            animation: pop 0.5s ease-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .success-icon svg { width: 40px; height: 40px; stroke: #060a0a; stroke-width: 3; fill: none; }
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+        p { color: var(--text-secondary); font-size: 1.125rem; line-height: 1.7; margin-bottom: 2rem; }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--accent); text-decoration: none; font-weight: 600;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 0.8; }
+        .back-link svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h1>Message sent!</h1>
+        <p>Thanks for reaching out. We'll get back to you as soon as possible.</p>
+        <a href="/" class="back-link">
+            <svg viewBox="0 0 24 24">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to home
+        </a>
+    </div>
+</body>
+</html>

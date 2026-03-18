@@ -1,0 +1,7 @@
+# Clean URL redirects back to root (hash-free)
+/features       /       200
+/features/      /       200
+/contact        /       200
+/contact/       /       200
+/how-it-works   /       200
+/how-it-works/  /       200

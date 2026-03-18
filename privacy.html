@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Monty</title>
+    <meta name="description" content="Monty Privacy Policy - How we collect, use, and protect your health data.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #060a0a;
+            --border-color: rgba(68, 223, 191, 0.12);
+            --text-primary: #e8f4f0;
+            --text-secondary: rgba(232, 244, 240, 0.72);
+            --text-muted: rgba(232, 244, 240, 0.45);
+            --accent: #44DFBF;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 2rem;
+            background: rgba(6, 10, 10, 0.9);
+            backdrop-filter: blur(12px);
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 40px; width: auto; }
+        .content {
+            max-width: 680px; margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+        .content h1 {
+            font-size: 2rem; font-weight: 700;
+            margin-bottom: 0.5rem; letter-spacing: -0.02em;
+        }
+        .last-updated {
+            color: var(--text-muted); font-size: 0.875rem;
+            margin-bottom: 3rem; padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .content h2 {
+            font-size: 1.25rem; font-weight: 600;
+            margin-top: 3rem; margin-bottom: 1rem;
+        }
+        .content p { color: var(--text-secondary); margin-bottom: 1rem; }
+        .content ul { color: var(--text-secondary); margin-bottom: 1rem; padding-left: 1.5rem; }
+        .content li { margin-bottom: 0.5rem; }
+        .content a { color: var(--accent); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        .content strong { color: var(--text-primary); font-weight: 600; }
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+        .footer-container {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1.5rem;
+        }
+        .footer-logo img { height: 32px; width: auto; opacity: 0.7; }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copyright {
+            color: var(--text-muted); font-size: 0.8125rem;
+            width: 100%; text-align: center;
+            margin-top: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        @media (max-width: 768px) {
+            .content { padding: 6rem 1.5rem 3rem; }
+            .content h1 { font-size: 1.75rem; }
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="/logo.png" alt="Monty"></a>
+        </div>
+    </nav>
+    <main class="content">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last Updated: March 2026</p>
+
+        <p>Monty ("we", "our", "us") is committed to protecting your privacy. This policy describes how we handle your personal information when you use our mobile application and related services.</p>
+
+        <h2>1. Data Collection & Storage</h2>
+        <p>Monty stores your health data locally on your device using an encrypted SQLite database. Your data is also backed up to Firebase Cloud Firestore using end-to-end encryption (NaCl secretbox). The encryption key is generated on your device and stored securely in your device keychain.</p>
+        <p>Data we collect and store:</p>
+        <ul>
+            <li>Email address and display name (for authentication)</li>
+            <li>Daily wellness logs (mood, sleep, exercise, diet notes)</li>
+            <li>Symptoms and severity ratings</li>
+            <li>Supplements taken</li>
+            <li>Meal descriptions</li>
+            <li>Chat conversation history</li>
+            <li>Health profile information (conditions, allergies, medications)</li>
+        </ul>
+
+        <h2>2. Cloud Services</h2>
+        <p>We use the following third-party services:</p>
+        <p><strong>Firebase (Google):</strong> Authentication, encrypted data backup, and cloud functions. Firebase processes your email address and encrypted health data.</p>
+        <p><strong>OpenAI:</strong> When you use AI features (consultations, chat, insights), your health data summary is sent through our secure server to OpenAI's API to generate personalized wellness recommendations. Your data is not stored by OpenAI for training purposes.</p>
+        <p><strong>RevenueCat:</strong> Manages subscription purchases. RevenueCat receives your anonymous user ID and purchase data from Apple. It does not receive your health data.</p>
+        <p><strong>Apple (In-App Purchases):</strong> Subscription payments are processed by Apple. We do not receive or store your payment information.</p>
+
+        <h2>3. AI-Powered Features</h2>
+        <p>When you use AI features:</p>
+        <ul>
+            <li>Recent health data summaries (up to 90 days) are sent as context</li>
+            <li>Chat messages you type are sent to process your questions</li>
+            <li>Data is transmitted from your device to our Cloud Function, which forwards it to OpenAI</li>
+            <li>All transmissions use encrypted HTTPS connections</li>
+            <li>You can choose not to use AI features, and your data will remain on your device and in your encrypted cloud backup</li>
+        </ul>
+
+        <h2>4. Data Sharing</h2>
+        <p>We do not sell, rent, or share your personal health data with any third parties for marketing or advertising purposes. Data is only shared with the third-party services listed above as necessary to provide the app's functionality.</p>
+
+        <h2>5. Data Encryption</h2>
+        <p>Health data stored in the cloud is encrypted using NaCl secretbox encryption before leaving your device. We cannot read your health data on our servers. Only your device holds the decryption key.</p>
+
+        <h2>6. Data Retention & Deletion</h2>
+        <p>You can permanently delete all local data at any time from Profile > Clear All Data. You can delete your entire account (including all cloud data) from Profile > Delete Account. Once deleted, data cannot be recovered.</p>
+
+        <h2>7. HIPAA Disclaimer</h2>
+        <p>Monty is not a HIPAA-covered entity. While we take data security seriously and encrypt your health data, Monty is a consumer wellness app, not a healthcare provider or health plan. Do not use Monty to store information that requires HIPAA-level protection.</p>
+
+        <h2>8. Children's Privacy</h2>
+        <p>Monty is not intended for children under 13. We do not knowingly collect information from children.</p>
+
+        <h2>9. Your Rights</h2>
+        <p>Depending on your location, you may have rights regarding your personal information including access, correction, deletion, and data portability. To exercise these rights, contact us at <a href="mailto:support@montyhealth.app">support@montyhealth.app</a>.</p>
+
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Changes will be reflected in the app with an updated date.</p>
+
+        <h2>11. Contact</h2>
+        <p>For privacy questions, contact: <a href="mailto:support@montyhealth.app">support@montyhealth.app</a></p>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo"><img src="/logo.png" alt="Monty"></div>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">&copy; 2026 Monty Health. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
