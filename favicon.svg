@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    path {
+      fill: none;
+      stroke: #1a1a1a;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: #e8f4f0;
+      }
+    }
+  </style>
+  <!-- M with integrated heartbeat pulse -->
+  <path d="M 10 50 L 10 14 L 24 32 L 32 18 L 40 32 L 54 14 L 54 50"/>
+</svg>
