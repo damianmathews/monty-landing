@@ -107,61 +107,111 @@
         <h1>Privacy Policy</h1>
         <p class="last-updated">Last Updated: March 2026</p>
 
-        <p>Monty ("we", "our", "us") is committed to protecting your privacy. This policy describes how we handle your personal information when you use our mobile application and related services.</p>
+        <p>Monty Health ("we", "our", "us") is committed to protecting your privacy. This policy describes how we collect, use, store, and protect your personal information when you use our mobile application ("the App") and related services.</p>
 
-        <h2>1. Data Collection & Storage</h2>
-        <p>Monty stores your health data locally on your device using an encrypted SQLite database. Your data is also backed up to Firebase Cloud Firestore using end-to-end encryption (NaCl secretbox). The encryption key is generated on your device and stored securely in your device keychain.</p>
-        <p>Data we collect and store:</p>
+        <h2>1. Data Controller</h2>
+        <p>Monty Health is the data controller responsible for your personal data. For any privacy-related inquiries, contact us at <a href="mailto:support@monty.health">support@monty.health</a>.</p>
+
+        <h2>2. Data We Collect</h2>
+        <p>We collect the following categories of personal information:</p>
+        <p><strong>Account Information:</strong></p>
         <ul>
-            <li>Email address and display name (for authentication)</li>
-            <li>Daily wellness logs (mood, sleep, exercise, diet notes)</li>
+            <li>Email address (via Firebase Authentication or Google Sign-In)</li>
+            <li>Display name</li>
+            <li>Anonymous user ID (for subscription management)</li>
+        </ul>
+        <p><strong>Health &amp; Wellness Data (self-reported):</strong></p>
+        <ul>
+            <li>Daily wellness logs (mood, sleep quality, exercise, diet notes)</li>
             <li>Symptoms and severity ratings</li>
             <li>Supplements taken</li>
             <li>Meal descriptions</li>
-            <li>Chat conversation history</li>
             <li>Health profile information (conditions, allergies, medications)</li>
         </ul>
-
-        <h2>2. Cloud Services</h2>
-        <p>We use the following third-party services:</p>
-        <p><strong>Firebase (Google):</strong> Authentication, encrypted data backup, and cloud functions. Firebase processes your email address and encrypted health data.</p>
-        <p><strong>OpenAI:</strong> When you use AI features (consultations, chat, insights), your health data summary is sent through our secure server to OpenAI's API to generate personalized wellness recommendations. Your data is not stored by OpenAI for training purposes.</p>
-        <p><strong>RevenueCat:</strong> Manages subscription purchases. RevenueCat receives your anonymous user ID and purchase data from Apple. It does not receive your health data.</p>
-        <p><strong>Apple (In-App Purchases):</strong> Subscription payments are processed by Apple. We do not receive or store your payment information.</p>
-
-        <h2>3. AI-Powered Features</h2>
-        <p>When you use AI features:</p>
+        <p><strong>Usage Data:</strong></p>
         <ul>
-            <li>Recent health data summaries (up to 90 days) are sent as context</li>
-            <li>Chat messages you type are sent to process your questions</li>
-            <li>Data is transmitted from your device to our Cloud Function, which forwards it to OpenAI</li>
-            <li>All transmissions use encrypted HTTPS connections</li>
-            <li>You can choose not to use AI features, and your data will remain on your device and in your encrypted cloud backup</li>
+            <li>AI consultation and chat conversation history</li>
+            <li>Subscription purchase history (managed by Apple and RevenueCat)</li>
+            <li>Device tokens for push notifications (via Apple Push Notification service)</li>
         </ul>
 
-        <h2>4. Data Sharing</h2>
-        <p>We do not sell, rent, or share your personal health data with any third parties for marketing or advertising purposes. Data is only shared with the third-party services listed above as necessary to provide the app's functionality.</p>
+        <h2>3. Legal Basis for Processing</h2>
+        <p>We process your personal data on the following legal bases:</p>
+        <ul>
+            <li><strong>Contract performance:</strong> Processing necessary to provide the App's core functionality (health logging, AI consultations, data storage).</li>
+            <li><strong>Consent:</strong> You provide explicit consent when you enter health data, use AI features, or enable push notifications. You may withdraw consent at any time by deleting your data or account.</li>
+            <li><strong>Legitimate interest:</strong> Maintaining the security and functionality of the App, preventing fraud and abuse.</li>
+        </ul>
 
-        <h2>5. Data Encryption</h2>
-        <p>Health data stored in the cloud is encrypted using NaCl secretbox encryption before leaving your device. We cannot read your health data on our servers. Only your device holds the decryption key.</p>
+        <h2>4. How We Store Your Data</h2>
+        <p>Monty stores your health data <strong>locally on your device</strong> using an encrypted SQLite database. If you are a Pro subscriber, your data is also backed up to Firebase Cloud Firestore using end-to-end encryption (NaCl secretbox). The encryption key is generated on your device and stored securely in your device keychain. <strong>We cannot read your encrypted health data on our servers.</strong></p>
 
-        <h2>6. Data Retention & Deletion</h2>
-        <p>You can permanently delete all local data at any time from Profile > Clear All Data. You can delete your entire account (including all cloud data) from Profile > Delete Account. Once deleted, data cannot be recovered.</p>
+        <h2>5. Third-Party Services</h2>
+        <p>We use the following third-party services to provide the App:</p>
+        <p><strong>Firebase (Google):</strong> Authentication (including Google Sign-In), encrypted data backup, and cloud functions. Firebase processes your email address, authentication tokens, and encrypted health data. <a href="https://policies.google.com/privacy" rel="noopener">Google's Privacy Policy</a>.</p>
+        <p><strong>Google Sign-In:</strong> If you choose to sign in with Google, Google shares your name, email address, and profile picture with the App. We only use your email and display name. <a href="https://policies.google.com/privacy" rel="noopener">Google's Privacy Policy</a>.</p>
+        <p><strong>OpenAI:</strong> When you use AI features (consultations, chat, insights), your health data summary is sent through our secure Cloud Function to OpenAI's API to generate personalized wellness recommendations. We use the OpenAI API with data retention disabled; your data is not stored by OpenAI for model training. <a href="https://openai.com/policies/api-data-usage-policies" rel="noopener">OpenAI's API Data Usage Policy</a>.</p>
+        <p><strong>RevenueCat:</strong> Manages subscription purchases. RevenueCat receives your anonymous user ID and purchase data from Apple. It does not receive your health data. <a href="https://www.revenuecat.com/privacy" rel="noopener">RevenueCat's Privacy Policy</a>.</p>
+        <p><strong>Apple (In-App Purchases &amp; Push Notifications):</strong> Subscription payments are processed by Apple. We do not receive or store your payment information. Push notification delivery is handled via Apple Push Notification service (APNs), which uses device tokens.</p>
 
-        <h2>7. HIPAA Disclaimer</h2>
+        <h2>6. AI-Powered Features &amp; Automated Decision-Making</h2>
+        <p>When you use AI features:</p>
+        <ul>
+            <li>Recent health data summaries (up to 90 days) are sent as context to generate personalized recommendations.</li>
+            <li>Chat messages you type are sent to process your questions.</li>
+            <li>Data is transmitted from your device to our Firebase Cloud Function via encrypted HTTPS, which forwards it to OpenAI's API.</li>
+            <li>We do not log or store the content of AI conversations on our servers.</li>
+            <li>AI features are entirely optional. You can use the App for logging without ever using AI features.</li>
+        </ul>
+        <p><strong>Automated Decision-Making:</strong> The App uses AI to analyze patterns in your self-reported health data and generate wellness suggestions. These AI-generated outputs are informational only and do not constitute medical advice. No automated decisions with legal or similarly significant effects are made about you. You are never obligated to follow AI recommendations.</p>
+
+        <h2>7. International Data Transfers</h2>
+        <p>Your data may be processed in the United States, where our third-party service providers (Firebase, OpenAI, RevenueCat) are located. If you are accessing the App from outside the United States (including the European Economic Area), you acknowledge that your data will be transferred to and processed in the United States. We rely on the service providers' data protection measures and standard contractual clauses where applicable to safeguard transferred data.</p>
+
+        <h2>8. Data Sharing</h2>
+        <p>We do not sell, rent, or share your personal health data with any third parties for marketing or advertising purposes. We do not participate in data broker arrangements. Data is only shared with the third-party services listed in Section 5 as necessary to provide the App's functionality.</p>
+
+        <h2>9. Data Encryption</h2>
+        <p>Health data backed up to the cloud is encrypted using NaCl secretbox encryption before leaving your device. The encryption key is stored in your device's secure keychain and is never transmitted to our servers. We cannot decrypt or read your health data.</p>
+
+        <h2>10. Data Retention</h2>
+        <ul>
+            <li><strong>Local data:</strong> Stored on your device until you delete it or uninstall the App.</li>
+            <li><strong>Cloud backups:</strong> Retained until you delete your account. Encrypted backups are removed within 30 days of account deletion.</li>
+            <li><strong>Authentication data:</strong> Your Firebase authentication record is deleted when you delete your account.</li>
+            <li><strong>AI conversation data:</strong> Not stored on our servers. OpenAI processes requests in real-time with zero data retention per our API configuration.</li>
+            <li><strong>Subscription data:</strong> Managed by Apple and RevenueCat according to their respective retention policies.</li>
+        </ul>
+
+        <h2>11. Data Retention &amp; Deletion</h2>
+        <p>You can permanently delete all local data at any time from Profile &gt; Clear All Data. You can delete your entire account (including all cloud data) from Profile &gt; Delete Account. Once deleted, data cannot be recovered.</p>
+
+        <h2>12. HIPAA Disclaimer</h2>
         <p>Monty is not a HIPAA-covered entity. While we take data security seriously and encrypt your health data, Monty is a consumer wellness app, not a healthcare provider or health plan. Do not use Monty to store information that requires HIPAA-level protection.</p>
 
-        <h2>8. Children's Privacy</h2>
-        <p>Monty is not intended for children under 13. We do not knowingly collect information from children.</p>
+        <h2>13. Children's Privacy</h2>
+        <p>Monty is not intended for children under 13. We do not knowingly collect personal information from children under 13. If we learn that we have collected data from a child under 13, we will delete that data promptly.</p>
 
-        <h2>9. Your Rights</h2>
-        <p>Depending on your location, you may have rights regarding your personal information including access, correction, deletion, and data portability. To exercise these rights, contact us at <a href="mailto:support@monty.health">support@monty.health</a>.</p>
+        <h2>14. Your Rights</h2>
+        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+        <ul>
+            <li><strong>Right of access:</strong> Request a copy of the personal data we hold about you.</li>
+            <li><strong>Right to rectification:</strong> Request correction of inaccurate personal data.</li>
+            <li><strong>Right to erasure:</strong> Request deletion of your personal data (available via Profile &gt; Delete Account).</li>
+            <li><strong>Right to restrict processing:</strong> Request that we limit how we use your data.</li>
+            <li><strong>Right to data portability:</strong> Request your data in a structured, machine-readable format.</li>
+            <li><strong>Right to object:</strong> Object to processing based on legitimate interest.</li>
+            <li><strong>Right to withdraw consent:</strong> Withdraw your consent at any time (this does not affect processing done prior to withdrawal).</li>
+        </ul>
+        <p><strong>For EU/EEA residents:</strong> You have the right to lodge a complaint with your local data protection supervisory authority if you believe your data has been processed unlawfully.</p>
+        <p><strong>For California residents (CCPA):</strong> You have the right to know what personal information we collect and how it is used, the right to delete your personal information, and the right to opt-out of the sale of personal information. <strong>We do not sell your personal information.</strong> To exercise any of these rights, contact us at <a href="mailto:support@monty.health">support@monty.health</a>. We will not discriminate against you for exercising your rights.</p>
+        <p>To exercise any of these rights, contact us at <a href="mailto:support@monty.health">support@monty.health</a>. We will respond to verified requests within 30 days.</p>
 
-        <h2>10. Changes to This Policy</h2>
-        <p>We may update this policy from time to time. Changes will be reflected in the app with an updated date.</p>
+        <h2>15. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. If we make material changes, we will notify you through the App or by updating the "Last Updated" date. Your continued use of the App after changes are posted constitutes acceptance of the revised policy.</p>
 
-        <h2>11. Contact</h2>
-        <p>For privacy questions, contact: <a href="mailto:support@monty.health">support@monty.health</a></p>
+        <h2>16. Contact</h2>
+        <p>For privacy questions or to exercise your data rights, contact: <a href="mailto:support@monty.health">support@monty.health</a></p>
     </main>
     <footer>
         <div class="footer-container">
