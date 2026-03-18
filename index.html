@@ -494,14 +494,34 @@
             border: 1px solid var(--border-strong);
             color: var(--text-secondary);
             background: transparent;
-            cursor: default;
+            cursor: pointer;
             transition: all var(--duration) var(--ease);
+            user-select: none;
+        }
+
+        .hero-panel-tab:hover:not(.active) {
+            border-color: var(--accent-deep);
+            color: var(--accent-deep);
         }
 
         .hero-panel-tab.active {
             background: var(--accent-deep);
             border-color: var(--accent-deep);
             color: #f7f4ef;
+        }
+
+        .hero-panel-view {
+            display: none;
+            animation: panelFadeIn 0.3s ease;
+        }
+
+        .hero-panel-view.active {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-panel-chat {
@@ -565,6 +585,128 @@
             stroke: #f7f4ef;
             fill: none;
             stroke-width: 2;
+        }
+
+        /* Insights view */
+        .insight-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+        }
+
+        .insight-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .insight-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .insight-label svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .insight-text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--text-primary);
+        }
+
+        .insight-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Track view */
+        .track-day-header {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .track-row:last-child {
+            border-bottom: none;
+        }
+
+        .track-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .track-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-deep);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .track-label {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .track-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .track-pill {
+            display: inline-flex;
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--accent-muted);
+            color: var(--accent-deep);
+        }
+
+        .track-supplements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .track-supp-pill {
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-weight: 500;
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
         }
 
 
@@ -1691,18 +1833,80 @@
 
             <div class="hero-panel animate-on-scroll stagger-2">
                 <div class="hero-panel-tabs">
-                    <span class="hero-panel-tab active">Consult</span>
-                    <span class="hero-panel-tab">Insights</span>
-                    <span class="hero-panel-tab">Track</span>
+                    <span class="hero-panel-tab active" data-panel="consult">Consult</span>
+                    <span class="hero-panel-tab" data-panel="insights">Insights</span>
+                    <span class="hero-panel-tab" data-panel="track">Track</span>
                 </div>
-                <div class="hero-panel-chat">
-                    <div class="chat-bubble chat-user">I've had a headache for two days and I'm feeling really tired. I've been sleeping poorly.</div>
-                    <div class="chat-bubble chat-ai">Based on your recent patterns, I notice your headaches tend to follow periods of poor sleep. Last week, you logged similar symptoms after three nights of under 6 hours. Let me suggest a targeted plan...</div>
+
+                <!-- Consult View -->
+                <div class="hero-panel-view active" id="panel-consult">
+                    <div class="hero-panel-chat">
+                        <div class="chat-bubble chat-user">I've had a headache for two days and I'm feeling really tired. I've been sleeping poorly.</div>
+                        <div class="chat-bubble chat-ai">Based on your recent patterns, I notice your headaches tend to follow periods of poor sleep. Last week you logged similar symptoms after three nights of under 6 hours. Let me suggest a targeted plan...</div>
+                    </div>
+                    <div class="chat-input-mock">
+                        <span>How are you feeling?</span>
+                        <div class="send-icon">
+                            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none"></polygon></svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="chat-input-mock">
-                    <span>How are you feeling?</span>
-                    <div class="send-icon">
-                        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2" fill="none"></polygon></svg>
+
+                <!-- Insights View -->
+                <div class="hero-panel-view" id="panel-insights">
+                    <div class="insight-card">
+                        <div class="insight-label">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line></svg>
+                            Sleep Pattern
+                        </div>
+                        <div class="insight-text">Your headaches are 3x more likely on days following less than 6 hours of sleep. This week, you averaged 5.4 hours.</div>
+                        <div class="insight-meta">Based on 23 days of data</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-label">
+                            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            Supplement Effect
+                        </div>
+                        <div class="insight-text">On days you take magnesium, your sleep quality scores average 7.8 vs 5.2 without it.</div>
+                        <div class="insight-meta">Based on 14 days of data</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-label">
+                            <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"></path></svg>
+                            Diet Correlation
+                        </div>
+                        <div class="insight-text">Skipping breakfast correlates with 40% lower energy scores in the afternoon.</div>
+                        <div class="insight-meta">Based on 30 days of data</div>
+                    </div>
+                </div>
+
+                <!-- Track View -->
+                <div class="hero-panel-view" id="panel-track">
+                    <div class="track-day-header">Today's Log</div>
+                    <div class="track-row">
+                        <div class="track-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="none"></path><path d="M8 14s1.5 2 4 2 4-2 4-2" fill="none"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div>
+                        <span class="track-label">Mood</span>
+                        <span class="track-value">7/10</span>
+                    </div>
+                    <div class="track-row">
+                        <div class="track-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg></div>
+                        <span class="track-label">Sleep</span>
+                        <span class="track-value">6.5h</span>
+                    </div>
+                    <div class="track-row">
+                        <div class="track-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                        <span class="track-label">Energy</span>
+                        <span class="track-value">5/10</span>
+                    </div>
+                    <div class="track-row">
+                        <div class="track-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                        <span class="track-label">Symptoms</span>
+                        <span class="track-pill">Headache &middot; 6/10</span>
+                    </div>
+                    <div class="track-supplements">
+                        <span class="track-supp-pill">Magnesium 400mg</span>
+                        <span class="track-supp-pill">Vitamin D 2000IU</span>
+                        <span class="track-supp-pill">Omega-3</span>
                     </div>
                 </div>
             </div>
@@ -2243,6 +2447,22 @@
                 } else {
                     answer.style.maxHeight = '0';
                 }
+            });
+        });
+
+        // Hero panel tab switching
+        document.querySelectorAll('.hero-panel-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const panelId = tab.dataset.panel;
+
+                // Update tabs
+                document.querySelectorAll('.hero-panel-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Update views
+                document.querySelectorAll('.hero-panel-view').forEach(v => v.classList.remove('active'));
+                const target = document.getElementById('panel-' + panelId);
+                if (target) target.classList.add('active');
             });
         });
 
