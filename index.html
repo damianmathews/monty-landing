@@ -2946,11 +2946,16 @@
             flex-shrink: 0;
         }
         .testimonials-nav {
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             gap: 12px;
             margin-top: 32px;
+        }
+        @media (max-width: 1024px) {
+            .testimonials-nav {
+                display: flex;
+            }
         }
         .testimonials-dot {
             width: 10px;
