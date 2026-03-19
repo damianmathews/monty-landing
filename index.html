@@ -131,7 +131,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+            scroll-padding-top: 120px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -233,7 +233,8 @@
 
         .nav-logo img {
             height: 36px;
-            filter: brightness(0);
+            filter: brightness(0) !important;
+            -webkit-filter: brightness(0) !important;
         }
 
         .nav-links {
@@ -2977,10 +2978,10 @@
                 <img src="/logo.png" alt="Monty">
             </a>
             <ul class="nav-links">
-                <li><a href="#how-it-works" class="scroll-link">How It Works</a></li>
-                <li><a href="#features" class="scroll-link">Features</a></li>
-                <li><a href="#pricing" class="scroll-link">Pricing</a></li>
-                <li><a href="#faq" class="scroll-link">FAQ</a></li>
+                <li><a href="/how-it-works" class="scroll-link" data-section="how-it-works">How It Works</a></li>
+                <li><a href="/features" class="scroll-link" data-section="features">Features</a></li>
+                <li><a href="/pricing" class="scroll-link" data-section="pricing">Pricing</a></li>
+                <li><a href="/faq" class="scroll-link" data-section="faq">FAQ</a></li>
             </ul>
             <a href="#contact" class="nav-contact scroll-link">Contact</a>
             <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
@@ -2993,11 +2994,11 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#how-it-works" class="scroll-link">How It Works</a>
-        <a href="#features" class="scroll-link">Features</a>
-        <a href="#pricing" class="scroll-link">Pricing</a>
-        <a href="#faq" class="scroll-link">FAQ</a>
-        <a href="#contact" class="scroll-link">Contact</a>
+        <a href="/how-it-works" class="scroll-link" data-section="how-it-works">How It Works</a>
+        <a href="/features" class="scroll-link" data-section="features">Features</a>
+        <a href="/pricing" class="scroll-link" data-section="pricing">Pricing</a>
+        <a href="/faq" class="scroll-link" data-section="faq">FAQ</a>
+        <a href="/contact" class="scroll-link" data-section="contact">Contact</a>
     </div>
 
     <!-- Hero -->
@@ -3894,10 +3895,10 @@
                 </div>
                 <div class="footer-col">
                     <h4>Product</h4>
-                    <a href="#how-it-works" class="scroll-link">How It Works</a>
-                    <a href="#features" class="scroll-link">Features</a>
-                    <a href="#pricing" class="scroll-link">Pricing</a>
-                    <a href="#faq" class="scroll-link">FAQ</a>
+                    <a href="/how-it-works" class="scroll-link" data-section="how-it-works">How It Works</a>
+                    <a href="/features" class="scroll-link" data-section="features">Features</a>
+                    <a href="/pricing" class="scroll-link" data-section="pricing">Pricing</a>
+                    <a href="/faq" class="scroll-link" data-section="faq">FAQ</a>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
@@ -3907,7 +3908,7 @@
                 <div class="footer-col">
                     <h4>Connect</h4>
                     <a href="mailto:support@monty.health">support@monty.health</a>
-                    <a href="#contact" class="scroll-link">Contact Form</a>
+                    <a href="/contact" class="scroll-link" data-section="contact">Contact Form</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -3920,6 +3921,33 @@
     <script>
     (function() {
         'use strict';
+
+        // ============================================
+        // CLEAN URL SCROLL LINKS
+        // ============================================
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.dataset.section;
+                if (!section) return;
+                const el = document.getElementById(section);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.pushState(null, '', '/' + section);
+                }
+                // Close mobile menu if open
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu) mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Handle direct URL visits like /pricing
+        const path = window.location.pathname.replace('/', '');
+        if (path && document.getElementById(path)) {
+            setTimeout(() => {
+                document.getElementById(path).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
 
         // ============================================
         // SCROLL ANIMATION OBSERVER
