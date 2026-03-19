@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Monty - Your AI Health Advisor</title>
     <meta name="description" content="Monty is a personal AI health advisor that remembers your patterns, tracks your wellness, and gives smarter advice each time.">
 
@@ -131,7 +131,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 120px;
+            scroll-padding-top: clamp(70px, 12vw, 120px);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -1714,6 +1714,14 @@
         }
 
         @media (max-width: 768px) {
+            .nav-inner {
+                height: 60px;
+            }
+
+            .mobile-menu {
+                top: 60px;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -1728,11 +1736,49 @@
 
             .hero {
                 min-height: auto;
-                padding: 120px 0 100px;
+                padding: 100px 0 80px;
             }
 
             .hero-panel {
-                display: none;
+                max-width: 100%;
+                padding: 24px;
+            }
+
+            .hero-panel-tab {
+                padding: 12px 20px;
+            }
+
+            .checkin-tab {
+                padding: 12px 18px;
+            }
+
+            .checkin-pill-item {
+                padding: 10px 16px;
+            }
+
+            .testimonials-dot {
+                width: 20px;
+                height: 20px;
+                padding: 4px;
+                background-clip: content-box;
+            }
+
+            .testimonials-dot.active {
+                background-clip: content-box;
+            }
+
+            .testimonials-arrow {
+                width: 40px;
+                height: 40px;
+            }
+
+            .testimonials-carousel-track .testimonial-card {
+                min-width: 100%;
+                margin-right: 0;
+            }
+
+            .testimonial-quote-mark {
+                font-size: 48px;
             }
 
             .features-grid {
@@ -1756,9 +1802,43 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .disclaimer-block {
+                padding: 20px 24px;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                padding: 14px clamp(20px, 4vw, 32px);
+            }
+
+            /* Symptom pills: wrap instead of scroll on mobile */
+            .checkin-pill-group {
+                overflow-x: visible !important;
+                flex-wrap: wrap !important;
+            }
+
+            .checkin-pill-group .checkin-pill-item {
+                white-space: normal !important;
+            }
+
+            /* Prevent iOS zoom on inputs */
+            input, select, textarea {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-panel {
+                display: none;
+            }
         }
 
         @media (max-width: 500px) {
+            :root {
+                --section-padding: 48px;
+            }
+
             .hero-headline {
                 font-size: clamp(36px, 10vw, 48px);
             }
@@ -1770,6 +1850,11 @@
 
             .trust-divider {
                 display: none;
+            }
+
+            .features-grid,
+            .how-step {
+                gap: 20px;
             }
         }
         /* ============================================
@@ -4373,24 +4458,7 @@
 
         document.querySelectorAll('.memory-stat-row').forEach(row => memoryStatsObserver.observe(row));
 
-        // ============================================
-        // HANDLE CLEAN URL ROUTING
-        // ============================================
-        const pathMap = {
-            '/how-it-works': 'how-it-works',
-            '/features': 'features',
-            '/pricing': 'pricing',
-            '/faq': 'faq',
-            '/contact': 'contact'
-        };
-
-        const path = window.location.pathname;
-        if (pathMap[path]) {
-            const target = document.getElementById(pathMap[path]);
-            if (target) {
-                setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
-            }
-        }
+        // HANDLE CLEAN URL ROUTING — handled at top of script
 
         // ============================================
         // BUTTON RIPPLE EFFECT
