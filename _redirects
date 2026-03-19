@@ -9,3 +9,5 @@
 /pricing/       /       200
 /faq            /       200
 /faq/           /       200
+/support        /#contact  301
+/support/       /#contact  301
