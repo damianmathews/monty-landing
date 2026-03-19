@@ -233,6 +233,7 @@
 
         .nav-logo img {
             height: 36px;
+            filter: brightness(0);
         }
 
         .nav-links {
@@ -349,9 +350,6 @@
             position: relative;
             overflow: hidden;
             padding: 120px 0 80px;
-            background:
-                radial-gradient(ellipse 120% 60% at 50% 110%, rgba(68, 223, 191, 0.06) 0%, transparent 70%),
-                linear-gradient(180deg, #f7f4ef 0%, #ede8e1 35%, #dde5e1 65%, #d0ddd8 100%);
         }
 
         .hero-inner {
@@ -1649,19 +1647,8 @@
         }
 
         /* ============================================
-           16. ANIMATIONS
+           16. ANIMATIONS (base overridden in section 27)
            ============================================ */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Stagger delays for grid items */
         .stagger-1 { transition-delay: 0ms; }
         .stagger-2 { transition-delay: 80ms; }
@@ -1784,9 +1771,1204 @@
                 display: none;
             }
         }
+        /* ============================================
+           18. CHECK-IN WIZARD TABS (Step 01)
+           ============================================ */
+        .checkin-tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .checkin-tab {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
+            background: transparent;
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+            user-select: none;
+        }
+
+        .checkin-tab:hover:not(.active) {
+            border-color: var(--accent-deep);
+            color: var(--accent-deep);
+        }
+
+        .checkin-tab.active {
+            background: var(--accent-deep);
+            border-color: var(--accent-deep);
+            color: #f7f4ef;
+        }
+
+        .checkin-view {
+            display: none;
+            animation: panelFadeIn 0.3s ease;
+        }
+
+        .checkin-view.active {
+            display: block;
+        }
+
+        .checkin-emoji-row {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0 8px;
+        }
+
+        .checkin-emoji {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+            background: var(--bg-card);
+        }
+
+        .checkin-emoji.selected {
+            border-color: var(--accent);
+            background: var(--accent-muted);
+            transform: scale(1.1);
+        }
+
+        .checkin-emoji:hover:not(.selected) {
+            border-color: var(--accent-deep);
+            transform: scale(1.05);
+        }
+
+        .checkin-field-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            margin-top: 14px;
+        }
+
+        .checkin-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+
+        .checkin-bar-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            width: 90px;
+        }
+
+        .checkin-bar-track {
+            flex: 1;
+            height: 8px;
+            background: var(--bg-mist);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkin-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            transition: width 0.4s var(--ease);
+        }
+
+        .checkin-bar-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 35px;
+            text-align: right;
+        }
+
+        .checkin-pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .checkin-pill-item {
+            padding: 7px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border-strong);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+        }
+
+        .checkin-pill-item.checked {
+            background: var(--accent-deep);
+            border-color: var(--accent-deep);
+            color: #f7f4ef;
+        }
+
+        .checkin-pill-item:hover:not(.checked) {
+            border-color: var(--accent-deep);
+        }
+
+        .checkin-meal-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+
+        .checkin-meal-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .checkin-meal-info {
+            flex: 1;
+        }
+
+        .checkin-meal-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .checkin-meal-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .checkin-exercise-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+
+        .checkin-exercise-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .checkin-exercise-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent-deep);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .checkin-exercise-info {
+            flex: 1;
+        }
+
+        .checkin-exercise-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .checkin-exercise-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           19. STEP 02 ENHANCED - ANALYSIS ANIMATION
+           ============================================ */
+        .analysis-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+
+        .analysis-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .analysis-card-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .analysis-card-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .analysis-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .analysis-card-badge {
+            margin-left: auto;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 3px 8px;
+            border-radius: var(--radius-pill);
+            background: rgba(68, 223, 191, 0.12);
+            color: var(--accent-deep);
+        }
+
+        .analysis-bar-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .analysis-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-bar-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            width: 75px;
+        }
+
+        .analysis-bar-track {
+            flex: 1;
+            height: 6px;
+            background: var(--bg-mist);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .analysis-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1.2s var(--ease);
+        }
+
+        .analysis-bar-fill.high { background: #e87c6a; }
+        .analysis-bar-fill.medium { background: #e8b86a; }
+        .analysis-bar-fill.low { background: var(--accent); }
+
+        .analysis-bar-pct {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+            width: 30px;
+            text-align: right;
+        }
+
+        .analysis-summary {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 10px;
+            padding: 10px 12px;
+            background: rgba(68, 223, 191, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(68, 223, 191, 0.1);
+        }
+
+        @keyframes analysisSlide {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .analysis-card { animation: analysisSlide 0.5s ease both; }
+        .analysis-card:nth-child(2) { animation-delay: 0.15s; }
+        .analysis-card:nth-child(3) { animation-delay: 0.3s; }
+
+        /* ============================================
+           20. STEP 03 ENHANCED - RECOMMENDATION CARDS
+           ============================================ */
+        .rec-card-enhanced {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid var(--border);
+            margin-bottom: 10px;
+            transition: all var(--duration) var(--ease);
+        }
+
+        .rec-card-enhanced:hover {
+            border-color: rgba(68, 223, 191, 0.3);
+            box-shadow: 0 4px 16px rgba(68, 223, 191, 0.06);
+        }
+
+        .rec-card-enhanced-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .rec-card-enhanced-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .rec-card-enhanced-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent-deep);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .rec-card-enhanced-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .rec-card-enhanced-priority {
+            margin-left: auto;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: var(--radius-pill);
+        }
+
+        .rec-card-enhanced-priority.high {
+            background: rgba(232, 124, 106, 0.12);
+            color: #c45a44;
+        }
+
+        .rec-card-enhanced-priority.medium {
+            background: rgba(232, 184, 106, 0.12);
+            color: #a88030;
+        }
+
+        .rec-card-enhanced-body {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .rec-card-enhanced-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .rec-card-enhanced-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .rec-card-enhanced-meta svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--text-muted);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ============================================
+           21. STEP 04 ENHANCED - HEALTH MEMORY TIMELINE
+           ============================================ */
+        .memory-timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .memory-timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--bg-mist));
+            border-radius: 1px;
+        }
+
+        .memory-entry {
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .memory-entry:last-child {
+            padding-bottom: 0;
+        }
+
+        .memory-dot {
+            position: absolute;
+            left: -20px;
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg-secondary);
+        }
+
+        .memory-dot.past {
+            background: var(--bg-mist);
+        }
+
+        .memory-date {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .memory-text {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.45;
+        }
+
+        .memory-tag {
+            display: inline-flex;
+            padding: 3px 8px;
+            border-radius: var(--radius-pill);
+            font-size: 10px;
+            font-weight: 500;
+            margin-top: 6px;
+            margin-right: 4px;
+        }
+
+        .memory-tag.positive {
+            background: rgba(68, 223, 191, 0.1);
+            color: var(--accent-deep);
+        }
+
+        .memory-tag.neutral {
+            background: var(--bg-mist);
+            color: var(--text-secondary);
+        }
+
+        .memory-tag.negative {
+            background: rgba(232, 124, 106, 0.1);
+            color: #c45a44;
+        }
+
+        .memory-stat-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .memory-stat {
+            flex: 1;
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .memory-stat-value {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .memory-stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ============================================
+           22. FEATURE CARD ENHANCEMENTS
+           ============================================ */
+        .feature-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s var(--ease), margin-top 0.35s var(--ease), opacity 0.35s var(--ease);
+            margin-top: 0;
+            opacity: 0;
+        }
+
+        .feature-stat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+
+        .feature-stat:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-stat-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-stat-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .feature-stat-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .feature-mini-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 32px;
+            margin-top: 10px;
+        }
+
+        .feature-mini-bar {
+            flex: 1;
+            background: var(--accent);
+            border-radius: 2px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .feature-card:hover .feature-mini-bar {
+            opacity: 1;
+        }
+
+        /* ============================================
+           23. TESTIMONIAL ENHANCEMENTS
+           ============================================ */
+        .testimonial-stars {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 14px;
+        }
+
+        .testimonial-star {
+            width: 16px;
+            height: 16px;
+            fill: #e8b86a;
+            stroke: none;
+        }
+
+        .testimonial-card-enhanced {
+            transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+        }
+
+        .testimonial-card-enhanced:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .testimonial-metric {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .testimonial-metric-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: var(--accent-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .testimonial-metric-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .testimonial-metric-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .testimonial-metric-text strong {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           24. PRICING TOGGLE
+           ============================================ */
+        .pricing-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .pricing-toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color var(--duration) var(--ease);
+        }
+
+        .pricing-toggle-label.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .pricing-toggle {
+            width: 48px;
+            height: 26px;
+            background: var(--bg-mist);
+            border-radius: 13px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: background var(--duration) var(--ease);
+            padding: 0;
+        }
+
+        .pricing-toggle.yearly {
+            background: var(--accent);
+        }
+
+        .pricing-toggle-knob {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform var(--duration) var(--ease);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        }
+
+        .pricing-toggle.yearly .pricing-toggle-knob {
+            transform: translateX(22px);
+        }
+
+        .pricing-save-badge {
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(68, 223, 191, 0.12);
+            color: var(--accent-deep);
+            padding: 3px 10px;
+            border-radius: var(--radius-pill);
+        }
+
+        .pricing-card {
+            transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           25. SCROLL PROGRESS INDICATOR
+           ============================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+            z-index: 1001;
+            width: 0%;
+            transition: width 50ms linear;
+        }
+
+        /* ============================================
+           26. ACTIVE NAV LINK HIGHLIGHT
+           ============================================ */
+        .nav-links a.active-section {
+            color: var(--text-primary);
+            position: relative;
+        }
+        .nav-links a.active-section::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+
+        /* ============================================
+           27. ENHANCED SCROLL ANIMATIONS
+           ============================================ */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-on-scroll.from-left {
+            transform: translateX(-30px) translateY(0);
+        }
+        .animate-on-scroll.from-left.visible {
+            transform: translateX(0) translateY(0);
+        }
+        .animate-on-scroll.from-right {
+            transform: translateX(30px) translateY(0);
+        }
+        .animate-on-scroll.from-right.visible {
+            transform: translateX(0) translateY(0);
+        }
+        .animate-on-scroll.scale-in {
+            transform: scale(0.95);
+        }
+        .animate-on-scroll.scale-in.visible {
+            transform: scale(1);
+        }
+
+        /* ============================================
+           28. PARALLAX HERO BG
+           ============================================ */
+        .hero-bg-parallax {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 120% 60% at 50% 110%, rgba(68, 223, 191, 0.06) 0%, transparent 70%),
+                linear-gradient(180deg, #f7f4ef 0%, #ede8e1 35%, #dde5e1 65%, #d0ddd8 100%);
+            will-change: transform;
+            z-index: 0;
+        }
+        .hero > .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           29. INTERACTIVE SLIDER BARS
+           ============================================ */
+        .checkin-bar-track,
+        .mockup-slider-track {
+            cursor: pointer;
+            position: relative;
+        }
+        .checkin-bar-track::after {
+            content: '';
+            position: absolute;
+            right: -2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--accent-deep);
+            opacity: 0;
+            transition: all 0.3s var(--ease);
+        }
+        .checkin-bar-track:hover::after {
+            width: 14px;
+            height: 14px;
+            right: -7px;
+            opacity: 0;
+        }
+
+        /* Slider thumb on bars */
+        .checkin-bar-fill,
+        .mockup-slider-fill {
+            position: relative;
+        }
+        .checkin-bar-fill::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-deep);
+            box-shadow: 0 2px 6px rgba(26, 58, 58, 0.2);
+            transition: transform 0.2s var(--ease);
+        }
+        .checkin-bar-track:hover .checkin-bar-fill::after {
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* ============================================
+           30. CHECKIN PILL ANIMATIONS
+           ============================================ */
+        .checkin-pill-item {
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .checkin-pill-item.checked {
+            transform: scale(1.05);
+        }
+        .checkin-pill-item:active {
+            transform: scale(0.95);
+        }
+
+        /* ============================================
+           31. ANALYSIS ANIMATED BARS
+           ============================================ */
+        .analysis-bar-fill {
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Count-up animation */
+        .analysis-bar-pct {
+            transition: opacity 0.3s;
+        }
+
+        /* Analysis card hover */
+        .analysis-card {
+            transition: all 0.3s var(--ease);
+            cursor: default;
+        }
+        .analysis-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: rgba(68, 223, 191, 0.2);
+        }
+
+        /* ============================================
+           32. EXPANDABLE REC CARDS (Step 03)
+           ============================================ */
+        .rec-card-enhanced {
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .rec-card-enhanced-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s var(--ease), margin 0.3s var(--ease);
+            margin-bottom: 0;
+        }
+        .rec-card-enhanced.expanded .rec-card-enhanced-body {
+            max-height: 200px;
+            opacity: 1;
+            margin-bottom: 10px;
+        }
+        .rec-card-enhanced-meta {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s var(--ease);
+        }
+        .rec-card-enhanced.expanded .rec-card-enhanced-meta {
+            max-height: 60px;
+            opacity: 1;
+        }
+        .rec-card-enhanced-header {
+            position: relative;
+        }
+        .rec-card-enhanced-header::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(0deg);
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a9e9e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-size: contain;
+            transition: transform 0.3s var(--ease);
+        }
+        .rec-card-enhanced.expanded .rec-card-enhanced-header::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .rec-card-enhanced:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(68, 223, 191, 0.08);
+        }
+
+        /* ============================================
+           33. EXPANDABLE MEMORY TIMELINE (Step 04)
+           ============================================ */
+        .memory-entry {
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+        .memory-entry:hover {
+            transform: translateX(4px);
+        }
+        .memory-entry-detail {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s var(--ease), margin-top 0.3s var(--ease);
+            margin-top: 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            padding-left: 2px;
+        }
+        .memory-entry.expanded .memory-entry-detail {
+            max-height: 120px;
+            opacity: 1;
+            margin-top: 8px;
+        }
+
+        /* Memory stat pulse */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(68, 223, 191, 0); }
+            50% { box-shadow: 0 0 0 6px rgba(68, 223, 191, 0.08); }
+        }
+        .memory-stat {
+            animation: pulse-glow 3s ease-in-out infinite;
+            transition: transform 0.3s var(--ease);
+        }
+        .memory-stat:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           34. FEATURE CARD FLIP/EXPAND ON CLICK
+           ============================================ */
+        .feature-card {
+            cursor: pointer;
+            position: relative;
+        }
+        .feature-card .feature-detail {
+            transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), margin-top 0.35s var(--ease), opacity 0.35s var(--ease);
+            opacity: 0;
+        }
+        .feature-card:hover .feature-detail,
+        .feature-card.expanded .feature-detail {
+            max-height: 200px;
+            margin-top: 14px;
+            opacity: 1;
+        }
+
+        /* Feature icon hover animation */
+        .feature-icon {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s var(--ease);
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(-5deg);
+            background: rgba(68, 223, 191, 0.18);
+        }
+
+        /* ============================================
+           35. TESTIMONIAL CAROUSEL
+           ============================================ */
+        .testimonials-carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonials-carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .testimonials-carousel-track .testimonial-card {
+            min-width: calc(33.333% - 16px);
+            margin-right: 24px;
+            flex-shrink: 0;
+        }
+        .testimonials-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+        .testimonials-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-mist);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+            padding: 0;
+        }
+        .testimonials-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+        .testimonials-arrow {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-strong);
+            background: var(--bg-card);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--ease);
+        }
+        .testimonials-arrow:hover {
+            border-color: var(--accent);
+            background: var(--accent-muted);
+        }
+        .testimonials-arrow svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--text-secondary);
+            fill: none;
+            stroke-width: 2;
+        }
+        @media (max-width: 1024px) {
+            .testimonials-carousel-track .testimonial-card {
+                min-width: calc(100% - 0px);
+                margin-right: 24px;
+            }
+        }
+
+        /* ============================================
+           36. PRICING ANIMATION
+           ============================================ */
+        .pricing-price {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .pricing-price.switching {
+            transform: translateY(-8px);
+            opacity: 0;
+        }
+
+        /* CTA button enhancements */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-primary:hover::after {
+            opacity: 1;
+        }
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .btn-outline:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* ============================================
+           37. CURSOR POINTER ON ALL INTERACTIVE
+           ============================================ */
+        .hero-panel-tab,
+        .checkin-tab,
+        .checkin-pill-item,
+        .checkin-emoji,
+        .checkin-bar-track,
+        .analysis-card,
+        .rec-card-enhanced,
+        .memory-entry,
+        .feature-card,
+        .testimonial-card,
+        .pricing-toggle,
+        .mockup-pill,
+        .btn-primary,
+        .btn-outline,
+        .testimonials-dot,
+        .testimonials-arrow {
+            cursor: pointer;
+        }
+
+        /* ============================================
+           38. GLOBAL TRANSITION POLISH
+           ============================================ */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        a, button {
+            transition: all var(--duration) var(--ease);
+        }
+
+        /* Stagger delays extended */
+        .stagger-7 { transition-delay: 480ms; }
+        .stagger-8 { transition-delay: 560ms; }
+
     </style>
 </head>
 <body>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Navigation -->
     <nav class="nav" id="nav">
@@ -1820,6 +3002,7 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
+        <div class="hero-bg-parallax" id="hero-parallax"></div>
         <div class="hero-inner">
             <div class="hero-content animate-on-scroll">
                 <div class="hero-overline">Personal AI Health Advisor</div>
@@ -1966,25 +3149,181 @@
                 </div>
                 <div class="how-step-visual">
                     <div class="step-mockup">
-                        <div class="mockup-pills">
-                            <span class="mockup-pill active">Headache</span>
-                            <span class="mockup-pill">Fatigue</span>
-                            <span class="mockup-pill">Nausea</span>
+                        <div class="checkin-tabs">
+                            <span class="checkin-tab active" data-checkin="symptoms">Symptoms</span>
+                            <span class="checkin-tab" data-checkin="mood">Mood</span>
+                            <span class="checkin-tab" data-checkin="sleep">Sleep</span>
+                            <span class="checkin-tab" data-checkin="diet">Diet</span>
+                            <span class="checkin-tab" data-checkin="supplements">Supplements</span>
+                            <span class="checkin-tab" data-checkin="exercise">Exercise</span>
                         </div>
-                        <div class="mockup-slider">
-                            <span class="mockup-slider-label">Severity</span>
-                            <div class="mockup-slider-track"><div class="mockup-slider-fill" style="width:70%"></div></div>
-                            <span class="mockup-slider-value">7</span>
+
+                        <!-- Symptoms View -->
+                        <div class="checkin-view active" id="checkin-symptoms">
+                            <div class="checkin-field-label">What are you experiencing?</div>
+                            <div class="checkin-pill-group" style="overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px;-webkit-overflow-scrolling:touch;">
+                                <span class="checkin-pill-item checked" style="white-space:nowrap">Headache</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Fatigue</span>
+                                <span class="checkin-pill-item checked" style="white-space:nowrap">Brain fog</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Nausea</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Back Pain</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Anxiety</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Insomnia</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Dizziness</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Joint Pain</span>
+                                <span class="checkin-pill-item" style="white-space:nowrap">Congestion</span>
+                            </div>
+                            <div class="checkin-field-label">Severity</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Headache</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:70%"></div></div>
+                                <span class="checkin-bar-value">7/10</span>
+                            </div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Brain fog</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:50%"></div></div>
+                                <span class="checkin-bar-value">5/10</span>
+                            </div>
                         </div>
-                        <div class="mockup-slider">
-                            <span class="mockup-slider-label">Sleep</span>
-                            <div class="mockup-slider-track"><div class="mockup-slider-fill" style="width:50%"></div></div>
-                            <span class="mockup-slider-value">5h</span>
+
+                        <!-- Mood View -->
+                        <div class="checkin-view" id="checkin-mood">
+                            <div class="checkin-field-label">How are you feeling?</div>
+                            <div class="checkin-emoji-row">
+                                <div class="checkin-emoji">1</div>
+                                <div class="checkin-emoji">3</div>
+                                <div class="checkin-emoji">5</div>
+                                <div class="checkin-emoji selected">7</div>
+                                <div class="checkin-emoji">9</div>
+                            </div>
+                            <div class="checkin-field-label">What's influencing your mood?</div>
+                            <div class="checkin-pill-group">
+                                <span class="checkin-pill-item checked">Work stress</span>
+                                <span class="checkin-pill-item">Relationships</span>
+                                <span class="checkin-pill-item checked">Weather</span>
+                                <span class="checkin-pill-item">Exercise</span>
+                                <span class="checkin-pill-item">Social</span>
+                            </div>
+                            <div class="checkin-field-label">Anxiety Level</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Anxiety</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:40%"></div></div>
+                                <span class="checkin-bar-value">4/10</span>
+                            </div>
                         </div>
-                        <div class="mockup-slider">
-                            <span class="mockup-slider-label">Mood</span>
-                            <div class="mockup-slider-track"><div class="mockup-slider-fill" style="width:60%"></div></div>
-                            <span class="mockup-slider-value">6</span>
+
+                        <!-- Sleep View -->
+                        <div class="checkin-view" id="checkin-sleep">
+                            <div class="checkin-field-label">Last night's sleep</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Duration</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:55%"></div></div>
+                                <span class="checkin-bar-value">5.5h</span>
+                            </div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Quality</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:40%"></div></div>
+                                <span class="checkin-bar-value">4/10</span>
+                            </div>
+                            <div class="checkin-field-label">Sleep issues</div>
+                            <div class="checkin-pill-group">
+                                <span class="checkin-pill-item checked">Trouble falling asleep</span>
+                                <span class="checkin-pill-item">Woke up during night</span>
+                                <span class="checkin-pill-item checked">Woke up too early</span>
+                                <span class="checkin-pill-item">Restless</span>
+                            </div>
+                            <div class="checkin-field-label">Bedtime</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Went to bed</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:85%"></div></div>
+                                <span class="checkin-bar-value">12:30a</span>
+                            </div>
+                        </div>
+
+                        <!-- Diet View -->
+                        <div class="checkin-view" id="checkin-diet">
+                            <div class="checkin-field-label">Today's meals</div>
+                            <div class="checkin-meal-card">
+                                <div class="checkin-meal-icon">B</div>
+                                <div class="checkin-meal-info">
+                                    <div class="checkin-meal-name">Breakfast - Skipped</div>
+                                    <div class="checkin-meal-desc">Only had coffee</div>
+                                </div>
+                            </div>
+                            <div class="checkin-meal-card">
+                                <div class="checkin-meal-icon">L</div>
+                                <div class="checkin-meal-info">
+                                    <div class="checkin-meal-name">Lunch - Salad & Sandwich</div>
+                                    <div class="checkin-meal-desc">Mixed greens, turkey, whole wheat</div>
+                                </div>
+                            </div>
+                            <div class="checkin-meal-card">
+                                <div class="checkin-meal-icon">D</div>
+                                <div class="checkin-meal-info">
+                                    <div class="checkin-meal-name">Dinner - Pasta</div>
+                                    <div class="checkin-meal-desc">Penne with marinara, side salad</div>
+                                </div>
+                            </div>
+                            <div class="checkin-field-label">Hydration</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Water</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:45%"></div></div>
+                                <span class="checkin-bar-value">1.2L</span>
+                            </div>
+                        </div>
+
+                        <!-- Supplements View -->
+                        <div class="checkin-view" id="checkin-supplements">
+                            <div class="checkin-field-label">Today's supplements</div>
+                            <div class="checkin-pill-group">
+                                <span class="checkin-pill-item checked">Magnesium 400mg</span>
+                                <span class="checkin-pill-item checked">Vitamin D 2000IU</span>
+                                <span class="checkin-pill-item checked">Omega-3</span>
+                                <span class="checkin-pill-item">B-Complex</span>
+                                <span class="checkin-pill-item">Zinc 15mg</span>
+                                <span class="checkin-pill-item">Probiotics</span>
+                            </div>
+                            <div class="checkin-field-label">Timing</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Morning</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:100%"></div></div>
+                                <span class="checkin-bar-value">3 taken</span>
+                            </div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Evening</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:0%"></div></div>
+                                <span class="checkin-bar-value">0 taken</span>
+                            </div>
+                        </div>
+
+                        <!-- Exercise View -->
+                        <div class="checkin-view" id="checkin-exercise">
+                            <div class="checkin-field-label">Today's activity</div>
+                            <div class="checkin-exercise-card">
+                                <div class="checkin-exercise-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="none"></path></svg></div>
+                                <div class="checkin-exercise-info">
+                                    <div class="checkin-exercise-name">Morning Walk</div>
+                                    <div class="checkin-exercise-meta">25 min, moderate pace</div>
+                                </div>
+                            </div>
+                            <div class="checkin-exercise-card">
+                                <div class="checkin-exercise-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none"></circle><polyline points="12 6 12 12 16 14" fill="none"></polyline></svg></div>
+                                <div class="checkin-exercise-info">
+                                    <div class="checkin-exercise-name">Yoga</div>
+                                    <div class="checkin-exercise-meta">30 min, beginner flow</div>
+                                </div>
+                            </div>
+                            <div class="checkin-field-label">Energy impact</div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Pre-workout</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:40%"></div></div>
+                                <span class="checkin-bar-value">4/10</span>
+                            </div>
+                            <div class="checkin-bar-row">
+                                <span class="checkin-bar-label">Post-workout</span>
+                                <div class="checkin-bar-track"><div class="checkin-bar-fill" style="width:70%"></div></div>
+                                <span class="checkin-bar-value">7/10</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1999,32 +3338,63 @@
                 </div>
                 <div class="how-step-visual">
                     <div class="step-mockup">
-                        <div class="mockup-timeline">
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">March 15</div>
-                                    <div class="mockup-timeline-text">Headache (7/10), slept 5h, skipped breakfast</div>
-                                </div>
+                        <div class="analysis-card">
+                            <div class="analysis-card-header">
+                                <div class="analysis-card-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                                <span class="analysis-card-title">Headache Triggers</span>
+                                <span class="analysis-card-badge">High Confidence</span>
                             </div>
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">March 10</div>
-                                    <div class="mockup-timeline-text">Headache (6/10), slept 4.5h, high caffeine</div>
+                            <div class="analysis-bar-group">
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">Poor sleep</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill high" style="width:87%"></div></div>
+                                    <span class="analysis-bar-pct">87%</span>
                                 </div>
-                            </div>
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot muted"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">March 3</div>
-                                    <div class="mockup-timeline-text">Headache (5/10), slept 5.5h, low water intake</div>
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">Dehydration</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill medium" style="width:62%"></div></div>
+                                    <span class="analysis-bar-pct">62%</span>
+                                </div>
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">Skip breakfast</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill medium" style="width:54%"></div></div>
+                                    <span class="analysis-bar-pct">54%</span>
+                                </div>
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">High caffeine</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill low" style="width:38%"></div></div>
+                                    <span class="analysis-bar-pct">38%</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="mockup-connection">
-                            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            <span>Pattern detected: headaches correlate with sleep under 6 hours</span>
+
+                        <div class="analysis-card">
+                            <div class="analysis-card-header">
+                                <div class="analysis-card-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg></div>
+                                <span class="analysis-card-title">Sleep Quality Drivers</span>
+                                <span class="analysis-card-badge">23 Data Points</span>
+                            </div>
+                            <div class="analysis-bar-group">
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">Late caffeine</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill high" style="width:78%"></div></div>
+                                    <span class="analysis-bar-pct">78%</span>
+                                </div>
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">Screen time</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill medium" style="width:65%"></div></div>
+                                    <span class="analysis-bar-pct">65%</span>
+                                </div>
+                                <div class="analysis-bar">
+                                    <span class="analysis-bar-label">No magnesium</span>
+                                    <div class="analysis-bar-track"><div class="analysis-bar-fill medium" style="width:59%"></div></div>
+                                    <span class="analysis-bar-pct">59%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="analysis-summary">
+                            <strong>Pattern found:</strong> Your headaches are 3x more likely on days following &lt;6h sleep. Magnesium on those days reduces severity by 40%.
                         </div>
                     </div>
                 </div>
@@ -2039,28 +3409,42 @@
                 </div>
                 <div class="how-step-visual">
                     <div class="step-mockup">
-                        <div class="mockup-card-row">
-                            <div class="mockup-rec-card">
-                                <div class="rec-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"></path></svg></div>
-                                <div class="rec-title">Magnesium glycinate</div>
-                                <div class="rec-desc">400mg before bed to support sleep quality</div>
+                        <div class="rec-card-enhanced">
+                            <div class="rec-card-enhanced-header">
+                                <div class="rec-card-enhanced-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg></div>
+                                <span class="rec-card-enhanced-title">Fix your sleep schedule</span>
+                                <span class="rec-card-enhanced-priority high">Priority</span>
                             </div>
-                            <div class="mockup-rec-card">
-                                <div class="rec-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                                <div class="rec-title">Sleep schedule</div>
-                                <div class="rec-desc">Consistent 10:30pm bedtime for 7 days</div>
+                            <div class="rec-card-enhanced-body">Set a consistent 10:30pm bedtime for the next 7 days. Your data shows a 3x headache reduction when you get 7+ hours consistently.</div>
+                            <div class="rec-card-enhanced-meta">
+                                <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7-day plan</span>
+                                <span><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Based on 23 entries</span>
                             </div>
                         </div>
-                        <div class="mockup-card-row" style="margin-top:10px">
-                            <div class="mockup-rec-card">
-                                <div class="rec-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
-                                <div class="rec-title">Hydration target</div>
-                                <div class="rec-desc">2.5L water daily, track intake</div>
+
+                        <div class="rec-card-enhanced">
+                            <div class="rec-card-enhanced-header">
+                                <div class="rec-card-enhanced-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"></path></svg></div>
+                                <span class="rec-card-enhanced-title">Add magnesium glycinate</span>
+                                <span class="rec-card-enhanced-priority high">Priority</span>
                             </div>
-                            <div class="mockup-rec-card">
-                                <div class="rec-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
-                                <div class="rec-title">Caffeine limit</div>
-                                <div class="rec-desc">Max 200mg, none after 2pm</div>
+                            <div class="rec-card-enhanced-body">Take 400mg before bed. On days you took magnesium, your sleep quality scored 7.8 vs 5.2 without. This directly impacts your headache frequency.</div>
+                            <div class="rec-card-enhanced-meta">
+                                <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Daily, ongoing</span>
+                                <span><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> 50% improvement expected</span>
+                            </div>
+                        </div>
+
+                        <div class="rec-card-enhanced">
+                            <div class="rec-card-enhanced-header">
+                                <div class="rec-card-enhanced-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                                <span class="rec-card-enhanced-title">Increase daily water intake</span>
+                                <span class="rec-card-enhanced-priority medium">Moderate</span>
+                            </div>
+                            <div class="rec-card-enhanced-body">Target 2.5L daily. You averaged only 1.2L last week. Dehydration correlates with 62% of your headache days.</div>
+                            <div class="rec-card-enhanced-meta">
+                                <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Daily target</span>
+                                <span><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Track in app</span>
                             </div>
                         </div>
                     </div>
@@ -2076,32 +3460,51 @@
                 </div>
                 <div class="how-step-visual">
                     <div class="step-mockup">
-                        <div class="mockup-timeline">
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">This week</div>
-                                    <div class="mockup-timeline-text">Sleep improved to 7.2h avg. Headache frequency down 60%.</div>
-                                </div>
+                        <div class="memory-timeline">
+                            <div class="memory-entry" onclick="this.classList.toggle('expanded')">
+                                <div class="memory-dot"></div>
+                                <div class="memory-date">This Week</div>
+                                <div class="memory-text">Sleep improved to 7.2h avg. Headache frequency down 60%. Magnesium taken daily.</div>
+                                <span class="memory-tag positive">Sleep +34%</span>
+                                <span class="memory-tag positive">Headaches -60%</span>
+                                <div class="memory-entry-detail">Consistency with 10:30pm bedtime was key. Magnesium glycinate taken 6/7 nights. Only one headache episode, severity 3/10 vs previous avg of 7/10. Water intake averaged 2.3L/day.</div>
                             </div>
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">Last month</div>
-                                    <div class="mockup-timeline-text">Magnesium supplementation started. Consistent bedtime adopted.</div>
-                                </div>
+                            <div class="memory-entry" onclick="this.classList.toggle('expanded')">
+                                <div class="memory-dot"></div>
+                                <div class="memory-date">2 Weeks Ago</div>
+                                <div class="memory-text">Started magnesium glycinate 400mg. Set 10:30pm bedtime. Water intake up to 2L/day.</div>
+                                <span class="memory-tag neutral">Plan started</span>
+                                <div class="memory-entry-detail">Initial adjustment period: first 3 days showed no improvement. Day 4 onwards, sleep quality scores began climbing from 5.2 to 6.8. Headache severity reduced but frequency unchanged yet.</div>
                             </div>
-                            <div class="mockup-timeline-item">
-                                <div class="mockup-timeline-dot muted"></div>
-                                <div class="mockup-timeline-content">
-                                    <div class="mockup-timeline-date">First check-in</div>
-                                    <div class="mockup-timeline-text">Frequent headaches, poor sleep, irregular diet patterns.</div>
-                                </div>
+                            <div class="memory-entry" onclick="this.classList.toggle('expanded')">
+                                <div class="memory-dot"></div>
+                                <div class="memory-date">1 Month Ago</div>
+                                <div class="memory-text">Pattern identified: sleep + hydration linked to headaches. First personalized plan generated.</div>
+                                <span class="memory-tag neutral">Pattern found</span>
+                                <div class="memory-entry-detail">Analysis of 14 headache days revealed 87% correlation with sub-6h sleep nights. Secondary factor: dehydration below 1.5L on 62% of headache days. Skipping breakfast was a 54% correlator.</div>
+                            </div>
+                            <div class="memory-entry" onclick="this.classList.toggle('expanded')">
+                                <div class="memory-dot past"></div>
+                                <div class="memory-date">First Check-in</div>
+                                <div class="memory-text">Frequent headaches, avg 5.1h sleep, irregular diet. Baseline established.</div>
+                                <span class="memory-tag negative">Baseline</span>
+                                <div class="memory-entry-detail">Starting metrics: 4+ headaches/week at severity 7/10. Sleep average 5.1h with quality score of 4.5/10. Meals skipped 40% of the time. Water intake under 1L most days. No supplements.</div>
                             </div>
                         </div>
-                        <div class="mockup-connection">
-                            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                            <span>Monty remembers: magnesium + consistent sleep = fewer headaches for you</span>
+
+                        <div class="memory-stat-row">
+                            <div class="memory-stat">
+                                <div class="memory-stat-value">47</div>
+                                <div class="memory-stat-label">Check-ins</div>
+                            </div>
+                            <div class="memory-stat">
+                                <div class="memory-stat-value">12</div>
+                                <div class="memory-stat-label">Patterns</div>
+                            </div>
+                            <div class="memory-stat">
+                                <div class="memory-stat-value">89%</div>
+                                <div class="memory-stat-label">Accuracy</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2124,6 +3527,16 @@
                     </div>
                     <h3>AI Health Consultations</h3>
                     <p>Streaming, conversational wellness advice. Describe how you feel in your own words and receive a detailed, personalized action plan.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                            <span class="feature-stat-text">Real-time streaming responses with contextual follow-ups</span>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                            <span class="feature-stat-text">Average consultation: under 2 minutes</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card animate-on-scroll stagger-2">
                     <div class="feature-icon">
@@ -2131,6 +3544,16 @@
                     </div>
                     <h3>Health Memory</h3>
                     <p>Every consultation builds on the last. Monty learns your patterns, remembers what works, and gives smarter advice each time you check in.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                            <span class="feature-stat-text">Correlates symptoms across weeks and months of data</span>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                            <span class="feature-stat-text">Advice accuracy improves with each check-in</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card animate-on-scroll stagger-3">
                     <div class="feature-icon">
@@ -2138,6 +3561,16 @@
                     </div>
                     <h3>Smart Daily Insights</h3>
                     <p>AI-generated observations drawn from your recent patterns. Gentle nudges, not nagging notifications. Available with Monty Pro.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line></svg></div>
+                            <span class="feature-stat-text">Delivered once daily, based on your recent trends</span>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+                            <span class="feature-stat-text">Example: "Your energy is 30% higher on days you eat breakfast"</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card animate-on-scroll stagger-4">
                     <div class="feature-icon">
@@ -2145,6 +3578,22 @@
                     </div>
                     <h3>Symptom &amp; Wellness Tracking</h3>
                     <p>Log mood, sleep quality, energy, symptoms, diet, and exercise. Structured data that builds a meaningful health timeline.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                            <span class="feature-stat-text">6 health dimensions tracked with each check-in</span>
+                        </div>
+                        <div class="feature-mini-chart">
+                            <div class="feature-mini-bar" style="height:40%"></div>
+                            <div class="feature-mini-bar" style="height:55%"></div>
+                            <div class="feature-mini-bar" style="height:35%"></div>
+                            <div class="feature-mini-bar" style="height:70%"></div>
+                            <div class="feature-mini-bar" style="height:60%"></div>
+                            <div class="feature-mini-bar" style="height:80%"></div>
+                            <div class="feature-mini-bar" style="height:75%"></div>
+                            <div class="feature-mini-bar" style="height:90%"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card animate-on-scroll stagger-5">
                     <div class="feature-icon">
@@ -2152,6 +3601,16 @@
                     </div>
                     <h3>Supplement Tracking</h3>
                     <p>Track what you take and when. Monty factors your supplements into every consultation and recommendation it makes.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                            <span class="feature-stat-text">Measures impact: "Magnesium improved your sleep by 34%"</span>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                            <span class="feature-stat-text">Morning and evening timing with reminders</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="feature-card animate-on-scroll stagger-6">
                     <div class="feature-icon">
@@ -2159,6 +3618,16 @@
                     </div>
                     <h3>Private by Design</h3>
                     <p>All data stored locally on your device. Cloud backups use NaCl secretbox encryption &mdash; your data is encrypted before it leaves your device. We cannot read it.</p>
+                    <div class="feature-detail">
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                            <span class="feature-stat-text">NaCl secretbox encryption, keys never leave your device</span>
+                        </div>
+                        <div class="feature-stat">
+                            <div class="feature-stat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                            <span class="feature-stat-text">Delete all data permanently at any time from settings</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2171,29 +3640,82 @@
                 <span class="overline">Testimonials</span>
                 <h2>What people <em class="serif">are saying</em></h2>
             </div>
-            <div class="testimonials-grid testimonials-grid-2">
-                <div class="testimonial-card animate-on-scroll stagger-1">
+            <div class="testimonials-carousel-wrapper">
+            <div class="testimonials-grid testimonials-carousel-track" id="testimonials-track">
+                <div class="testimonial-card testimonial-card-enhanced animate-on-scroll stagger-1">
                     <div class="testimonial-quote-mark">&ldquo;</div>
+                    <div class="testimonial-stars">
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
                     <p class="testimonial-text">I finally understand why I get migraines. Monty connected the dots between my sleep, my diet, and my stress in a way I never could have on my own.</p>
-                    <div class="testimonial-author">
+                    <div class="testimonial-metric">
+                        <div class="testimonial-metric-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                        <span class="testimonial-metric-text">Migraines reduced from <strong>4/week to 1/week</strong> after 3 weeks</span>
+                    </div>
+                    <div class="testimonial-author" style="margin-top:18px">
                         <div class="testimonial-avatar">T</div>
                         <div>
                             <div class="testimonial-name">Timothy D.</div>
-                            <div class="testimonial-context">Beta tester</div>
+                            <div class="testimonial-context">Beta tester &middot; 6 weeks using Monty</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card animate-on-scroll stagger-2">
+                <div class="testimonial-card testimonial-card-enhanced animate-on-scroll stagger-2">
                     <div class="testimonial-quote-mark">&ldquo;</div>
+                    <div class="testimonial-stars">
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
                     <p class="testimonial-text">It's like having a health journal that actually reads itself back to you and says something useful. The pattern recognition is uncanny.</p>
-                    <div class="testimonial-author">
+                    <div class="testimonial-metric">
+                        <div class="testimonial-metric-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg></div>
+                        <span class="testimonial-metric-text">Sleep quality improved <strong>from 4.5 to 7.8/10</strong> in 2 weeks</span>
+                    </div>
+                    <div class="testimonial-author" style="margin-top:18px">
                         <div class="testimonial-avatar">A</div>
                         <div>
                             <div class="testimonial-name">Alexander M.</div>
-                            <div class="testimonial-context">Beta tester</div>
+                            <div class="testimonial-context">Beta tester &middot; 4 weeks using Monty</div>
                         </div>
                     </div>
                 </div>
+                <div class="testimonial-card testimonial-card-enhanced animate-on-scroll stagger-3">
+                    <div class="testimonial-quote-mark">&ldquo;</div>
+                    <div class="testimonial-stars">
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <svg class="testimonial-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <p class="testimonial-text">I never realized how much skipping breakfast was affecting my afternoon energy. Monty caught the pattern within a week and the fix was so simple.</p>
+                    <div class="testimonial-metric">
+                        <div class="testimonial-metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line></svg></div>
+                        <span class="testimonial-metric-text">Energy levels up <strong>40% in the afternoon</strong> after dietary change</span>
+                    </div>
+                    <div class="testimonial-author" style="margin-top:18px">
+                        <div class="testimonial-avatar">S</div>
+                        <div>
+                            <div class="testimonial-name">Sarah K.</div>
+                            <div class="testimonial-context">Beta tester &middot; 8 weeks using Monty</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="testimonials-nav" id="testimonials-nav">
+                <button class="testimonials-arrow" id="test-prev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+                <button class="testimonials-dot active" data-slide="0"></button>
+                <button class="testimonials-dot" data-slide="1"></button>
+                <button class="testimonials-dot" data-slide="2"></button>
+                <button class="testimonials-arrow" id="test-next" aria-label="Next testimonial"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg></button>
             </div>
         </div>
     </section>
@@ -2205,6 +3727,14 @@
                 <span class="overline">Pricing</span>
                 <h2>Simple, <em class="serif">honest</em> pricing</h2>
                 <p>Start free. Upgrade when you're ready.</p>
+                <div class="pricing-toggle-wrapper">
+                    <span class="pricing-toggle-label active" id="pricing-monthly-label">Monthly</span>
+                    <button class="pricing-toggle" id="pricing-toggle" aria-label="Toggle yearly pricing">
+                        <div class="pricing-toggle-knob"></div>
+                    </button>
+                    <span class="pricing-toggle-label" id="pricing-yearly-label">Yearly</span>
+                    <span class="pricing-save-badge">Save 56%</span>
+                </div>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card animate-on-scroll stagger-1">
@@ -2221,8 +3751,8 @@
                 </div>
                 <div class="pricing-card featured animate-on-scroll stagger-2">
                     <span class="pricing-label">Monty Pro</span>
-                    <div class="pricing-price">$6.99 <span>/ month</span></div>
-                    <div class="pricing-subtitle">or $36.99/year (save 56%)</div>
+                    <div class="pricing-price" id="pro-price">$6.99 <span>/ month</span></div>
+                    <div class="pricing-subtitle" id="pro-subtitle">or $36.99/year (save 56%)</div>
                     <ul class="pricing-features">
                         <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>Everything in Free</li>
                         <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>Unlimited AI consultations</li>
@@ -2388,24 +3918,82 @@
     </footer>
 
     <script>
-        // Scroll animation observer
+    (function() {
+        'use strict';
+
+        // ============================================
+        // SCROLL ANIMATION OBSERVER
+        // ============================================
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-        // Nav scroll state
+        // ============================================
+        // SCROLL PROGRESS INDICATOR
+        // ============================================
+        const scrollProgress = document.getElementById('scroll-progress');
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = pct + '%';
+        }
+
+        // ============================================
+        // NAV SCROLL STATE + ACTIVE SECTION HIGHLIGHT
+        // ============================================
         const nav = document.getElementById('nav');
+        const navLinks = document.querySelectorAll('.nav-links a.scroll-link');
+        const sections = ['how-it-works', 'features', 'pricing', 'faq', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
+
+        function updateActiveNav() {
+            const scrollY = window.scrollY + 200;
+            let current = '';
+            sections.forEach(section => {
+                if (section.offsetTop <= scrollY) {
+                    current = section.id;
+                }
+            });
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href').replace('#', '');
+                link.classList.toggle('active-section', href === current);
+            });
+        }
+
+        // ============================================
+        // PARALLAX HERO BACKGROUND
+        // ============================================
+        const heroParallax = document.getElementById('hero-parallax');
+        function updateParallax() {
+            if (heroParallax && window.scrollY < window.innerHeight) {
+                heroParallax.style.transform = 'translateY(' + (window.scrollY * 0.3) + 'px)';
+            }
+        }
+
+        // Unified scroll handler
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    nav.classList.toggle('scrolled', window.scrollY > 50);
+                    updateScrollProgress();
+                    updateActiveNav();
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
 
-        // Mobile menu
+        // ============================================
+        // MOBILE MENU
+        // ============================================
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -2415,7 +4003,9 @@
             document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
         });
 
-        // Smooth scroll for all scroll-links
+        // ============================================
+        // SMOOTH SCROLL FOR ALL SCROLL-LINKS
+        // ============================================
         document.querySelectorAll('.scroll-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -2423,24 +4013,23 @@
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
-                    // Close mobile menu if open
                     hamburger.classList.remove('active');
                     mobileMenu.classList.remove('open');
                     document.body.style.overflow = '';
-                    // Update URL
                     history.pushState(null, '', href);
                 }
             });
         });
 
-        // FAQ accordion
+        // ============================================
+        // FAQ ACCORDION
+        // ============================================
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
                 const item = btn.parentElement;
                 const answer = item.querySelector('.faq-answer');
                 const isOpen = item.classList.contains('open');
 
-                // Close all others
                 document.querySelectorAll('.faq-item.open').forEach(openItem => {
                     if (openItem !== item) {
                         openItem.classList.remove('open');
@@ -2448,33 +4037,317 @@
                     }
                 });
 
-                // Toggle current
                 item.classList.toggle('open');
-                if (!isOpen) {
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                } else {
-                    answer.style.maxHeight = '0';
-                }
+                answer.style.maxHeight = isOpen ? '0' : answer.scrollHeight + 'px';
             });
         });
 
-        // Hero panel tab switching
+        // ============================================
+        // HERO PANEL TAB SWITCHING
+        // ============================================
         document.querySelectorAll('.hero-panel-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const panelId = tab.dataset.panel;
-
-                // Update tabs
                 document.querySelectorAll('.hero-panel-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-
-                // Update views
                 document.querySelectorAll('.hero-panel-view').forEach(v => v.classList.remove('active'));
                 const target = document.getElementById('panel-' + panelId);
                 if (target) target.classList.add('active');
             });
         });
 
-        // Handle clean URL routing
+        // ============================================
+        // CHECK-IN WIZARD TAB SWITCHING (Step 01)
+        // ============================================
+        document.querySelectorAll('.checkin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const checkinId = tab.dataset.checkin;
+                document.querySelectorAll('.checkin-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.checkin-view').forEach(v => v.classList.remove('active'));
+                const target = document.getElementById('checkin-' + checkinId);
+                if (target) target.classList.add('active');
+            });
+        });
+
+        // ============================================
+        // INTERACTIVE PILL TOGGLES (Check-in)
+        // ============================================
+        document.querySelectorAll('.checkin-pill-item').forEach(pill => {
+            pill.addEventListener('click', () => {
+                pill.classList.toggle('checked');
+                // Add a quick ripple effect
+                pill.style.transform = 'scale(0.9)';
+                setTimeout(() => { pill.style.transform = ''; }, 150);
+            });
+        });
+
+        // ============================================
+        // INTERACTIVE EMOJI SELECTION
+        // ============================================
+        document.querySelectorAll('.checkin-emoji').forEach(emoji => {
+            emoji.addEventListener('click', () => {
+                document.querySelectorAll('.checkin-emoji').forEach(e => e.classList.remove('selected'));
+                emoji.classList.add('selected');
+            });
+        });
+
+        // ============================================
+        // INTERACTIVE SLIDER BARS (Click to change)
+        // ============================================
+        document.querySelectorAll('.checkin-bar-track').forEach(track => {
+            track.addEventListener('click', (e) => {
+                const rect = track.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const pct = Math.max(5, Math.min(100, (x / rect.width) * 100));
+                const fill = track.querySelector('.checkin-bar-fill');
+                if (fill) {
+                    fill.style.width = pct + '%';
+                    // Update the value label
+                    const row = track.closest('.checkin-bar-row');
+                    if (row) {
+                        const valueEl = row.querySelector('.checkin-bar-value');
+                        if (valueEl) {
+                            const text = valueEl.textContent;
+                            if (text.includes('/10')) {
+                                valueEl.textContent = Math.round(pct / 10) + '/10';
+                            } else if (text.includes('h')) {
+                                valueEl.textContent = (pct / 10).toFixed(1) + 'h';
+                            } else if (text.includes('L')) {
+                                valueEl.textContent = (pct / 40).toFixed(1) + 'L';
+                            } else if (text.includes('taken')) {
+                                valueEl.textContent = Math.round(pct / 33) + ' taken';
+                            } else if (text.includes(':')) {
+                                const hour = Math.round(8 + (pct / 100) * 6);
+                                valueEl.textContent = (hour > 12 ? hour - 12 : hour) + ':' + (Math.round(pct) % 60 < 10 ? '0' : '') + (Math.round(pct) % 60) + (hour >= 12 ? 'p' : 'a');
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Also make mockup sliders interactive
+        document.querySelectorAll('.mockup-slider-track').forEach(track => {
+            track.addEventListener('click', (e) => {
+                const rect = track.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const pct = Math.max(5, Math.min(100, (x / rect.width) * 100));
+                const fill = track.querySelector('.mockup-slider-fill');
+                if (fill) fill.style.width = pct + '%';
+            });
+        });
+
+        // ============================================
+        // ANALYSIS BARS - ANIMATE ON SCROLL INTO VIEW
+        // ============================================
+        const analysisObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.analysis-bar-fill');
+                    bars.forEach((bar, i) => {
+                        const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+                        bar.setAttribute('data-width', targetWidth);
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                            bar.classList.add('animate-in');
+                        }, 200 + i * 150);
+                    });
+
+                    // Count-up animation for percentages
+                    const pcts = entry.target.querySelectorAll('.analysis-bar-pct');
+                    pcts.forEach((pct, i) => {
+                        const targetVal = parseInt(pct.textContent);
+                        if (isNaN(targetVal)) return;
+                        pct.textContent = '0%';
+                        setTimeout(() => {
+                            let current = 0;
+                            const step = targetVal / 30;
+                            const interval = setInterval(() => {
+                                current += step;
+                                if (current >= targetVal) {
+                                    current = targetVal;
+                                    clearInterval(interval);
+                                }
+                                pct.textContent = Math.round(current) + '%';
+                            }, 30);
+                        }, 300 + i * 150);
+                    });
+
+                    analysisObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Store original widths and observe
+        document.querySelectorAll('.analysis-bar-fill').forEach(bar => {
+            bar.setAttribute('data-width', bar.style.width || '0%');
+        });
+        document.querySelectorAll('.analysis-card').forEach(card => {
+            analysisObserver.observe(card);
+        });
+
+        // ============================================
+        // EXPANDABLE RECOMMENDATION CARDS (Step 03)
+        // ============================================
+        document.querySelectorAll('.rec-card-enhanced').forEach(card => {
+            // Start with first card expanded
+            card.addEventListener('click', () => {
+                const wasExpanded = card.classList.contains('expanded');
+                // Collapse all
+                document.querySelectorAll('.rec-card-enhanced').forEach(c => c.classList.remove('expanded'));
+                // Toggle clicked
+                if (!wasExpanded) card.classList.add('expanded');
+            });
+        });
+        // Expand first rec card by default
+        const firstRec = document.querySelector('.rec-card-enhanced');
+        if (firstRec) firstRec.classList.add('expanded');
+
+        // ============================================
+        // FEATURE CARD EXPAND ON CLICK
+        // ============================================
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const wasExpanded = card.classList.contains('expanded');
+                document.querySelectorAll('.feature-card').forEach(c => c.classList.remove('expanded'));
+                if (!wasExpanded) card.classList.add('expanded');
+            });
+        });
+
+        // ============================================
+        // TESTIMONIALS CAROUSEL
+        // ============================================
+        const track = document.getElementById('testimonials-track');
+        const dots = document.querySelectorAll('.testimonials-dot');
+        const prevBtn = document.getElementById('test-prev');
+        const nextBtn = document.getElementById('test-next');
+        let currentSlide = 0;
+        let autoRotateTimer;
+
+        function isMobile() {
+            return window.innerWidth <= 1024;
+        }
+
+        function goToSlide(index) {
+            const cards = track.querySelectorAll('.testimonial-card');
+            const totalSlides = isMobile() ? cards.length : 1;
+            currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+
+            if (isMobile()) {
+                const cardWidth = cards[0] ? cards[0].offsetWidth + 24 : 0;
+                track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
+            } else {
+                track.style.transform = 'translateX(0)';
+            }
+
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+        }
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        function startAutoRotate() {
+            stopAutoRotate();
+            autoRotateTimer = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoRotate() {
+            clearInterval(autoRotateTimer);
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoRotate(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoRotate(); });
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.slide));
+                startAutoRotate();
+            });
+        });
+
+        // Touch swipe support for testimonials
+        let touchStartX = 0;
+        if (track) {
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoRotate();
+            }, { passive: true });
+            track.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) {
+                    diff > 0 ? nextSlide() : prevSlide();
+                }
+                startAutoRotate();
+            }, { passive: true });
+        }
+
+        startAutoRotate();
+
+        // ============================================
+        // PRICING TOGGLE WITH ANIMATION
+        // ============================================
+        const pricingToggle = document.getElementById('pricing-toggle');
+        const proPrice = document.getElementById('pro-price');
+        const proSubtitle = document.getElementById('pro-subtitle');
+        const monthlyLabel = document.getElementById('pricing-monthly-label');
+        const yearlyLabel = document.getElementById('pricing-yearly-label');
+
+        if (pricingToggle) {
+            pricingToggle.addEventListener('click', () => {
+                const isYearly = pricingToggle.classList.toggle('yearly');
+                // Animate price change
+                proPrice.classList.add('switching');
+                setTimeout(() => {
+                    if (isYearly) {
+                        proPrice.innerHTML = '$36.99 <span>/ year</span>';
+                        proSubtitle.textContent = '$3.08/month \u2014 save 56% vs monthly';
+                        monthlyLabel.classList.remove('active');
+                        yearlyLabel.classList.add('active');
+                    } else {
+                        proPrice.innerHTML = '$6.99 <span>/ month</span>';
+                        proSubtitle.textContent = 'or $36.99/year (save 56%)';
+                        monthlyLabel.classList.add('active');
+                        yearlyLabel.classList.remove('active');
+                    }
+                    proPrice.classList.remove('switching');
+                }, 200);
+            });
+        }
+
+        // ============================================
+        // MEMORY STATS COUNT-UP ON SCROLL
+        // ============================================
+        const memoryStatsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statValues = entry.target.querySelectorAll('.memory-stat-value');
+                    statValues.forEach(el => {
+                        const text = el.textContent.trim();
+                        const hasPercent = text.includes('%');
+                        const targetVal = parseInt(text);
+                        if (isNaN(targetVal)) return;
+                        let current = 0;
+                        const step = targetVal / 40;
+                        const interval = setInterval(() => {
+                            current += step;
+                            if (current >= targetVal) {
+                                current = targetVal;
+                                clearInterval(interval);
+                            }
+                            el.textContent = Math.round(current) + (hasPercent ? '%' : '');
+                        }, 25);
+                    });
+                    memoryStatsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.memory-stat-row').forEach(row => memoryStatsObserver.observe(row));
+
+        // ============================================
+        // HANDLE CLEAN URL ROUTING
+        // ============================================
         const pathMap = {
             '/how-it-works': 'how-it-works',
             '/features': 'features',
@@ -2490,6 +4363,35 @@
                 setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
             }
         }
+
+        // ============================================
+        // BUTTON RIPPLE EFFECT
+        // ============================================
+        document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,0.3);width:' + size + 'px;height:' + size + 'px;left:' + (e.clientX - rect.left - size/2) + 'px;top:' + (e.clientY - rect.top - size/2) + 'px;transform:scale(0);animation:ripple-effect 0.6s ease-out;pointer-events:none;';
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple keyframes
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = '@keyframes ripple-effect { to { transform: scale(2.5); opacity: 0; } }';
+        document.head.appendChild(rippleStyle);
+
+        // ============================================
+        // INITIAL STATE
+        // ============================================
+        updateScrollProgress();
+        updateActiveNav();
+
+    })();
     </script>
 </body>
 </html>
