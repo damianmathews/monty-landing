@@ -1151,6 +1151,9 @@
         .testimonial-card {
             background: var(--bg-card);
             border-radius: var(--radius-card);
+            overflow: hidden;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
             padding: clamp(28px, 3vw, 44px);
             border: 1px solid var(--border);
             position: relative;
@@ -1714,6 +1717,10 @@
                 margin-right: auto;
             }
 
+            .testimonials-grid.testimonials-carousel-track {
+                max-width: 100%;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1780,6 +1787,7 @@
 
             .testimonials-carousel-track .testimonial-card {
                 min-width: 100%;
+                max-width: 100%;
                 margin-right: 0;
             }
 
@@ -2933,6 +2941,7 @@
         }
         .testimonials-carousel-track .testimonial-card {
             min-width: calc(33.333% - 16px);
+            max-width: calc(33.333% - 16px);
             margin-right: 24px;
             flex-shrink: 0;
         }
@@ -2982,8 +2991,9 @@
         }
         @media (max-width: 1024px) {
             .testimonials-carousel-track .testimonial-card {
-                min-width: calc(100% - 0px);
-                margin-right: 24px;
+                min-width: 100%;
+                max-width: 100%;
+                margin-right: 0;
             }
         }
 
@@ -4029,8 +4039,11 @@
                     history.pushState(null, '', '/' + section);
                 }
                 // Close mobile menu if open
-                const mobileMenu = document.querySelector('.mobile-menu');
-                if (mobileMenu) mobileMenu.classList.remove('active');
+                const mm = document.querySelector('.mobile-menu');
+                if (mm) mm.classList.remove('open');
+                const hb = document.getElementById('hamburger');
+                if (hb) hb.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
@@ -4124,23 +4137,7 @@
             document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
         });
 
-        // ============================================
-        // SMOOTH SCROLL FOR ALL SCROLL-LINKS
-        // ============================================
-        document.querySelectorAll('.scroll-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    hamburger.classList.remove('active');
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = '';
-                    history.pushState(null, '', href);
-                }
-            });
-        });
+        // Scroll-link handling is done at top of script
 
         // ============================================
         // FAQ ACCORDION
@@ -4347,22 +4344,15 @@
         let currentSlide = 0;
         let autoRotateTimer;
 
-        function isMobile() {
-            return window.innerWidth <= 1024;
-        }
-
         function goToSlide(index) {
+            if (!track) return;
             const cards = track.querySelectorAll('.testimonial-card');
-            const totalSlides = isMobile() ? cards.length : 1;
+            if (!cards.length) return;
+            const totalSlides = cards.length;
             currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
 
-            if (isMobile()) {
-                const cardWidth = cards[0] ? cards[0].offsetWidth + 24 : 0;
-                track.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
-            } else {
-                track.style.transform = 'translateX(0)';
-            }
-
+            const offset = cards[currentSlide].offsetLeft;
+            track.style.transform = 'translateX(-' + offset + 'px)';
             dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
         }
 
